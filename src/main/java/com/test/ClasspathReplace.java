@@ -10,8 +10,14 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang3.StringUtils;
+
 public class ClasspathReplace {
-	public static final String DEFAULT_CLASSPATH_FILE="C:\\Github\\milcom\\unitpages\\.classpath";
+	public static final String[] DEFAULT_CLASSPATH_FILE={
+		"C:\\Github\\milcom\\newsletter-subscription\\newsletter-subscription-admin\\.classpath",
+		"C:\\Github\\milcom\\newsletter-subscription\\newsletter-subscription-service\\.classpath",
+		"C:\\svn\\stable\\military\\video\\re-indexer-eclipse\\re-indexer\\.classpath"
+	};
 	public static final String CLASSPATH_PATTERN="(<classpathentry .*kind=\"lib\".*)(/>)";
 	public static final String CLASSPATH_REPLACEMENT=">\n"+
 		"		<attributes>\n"+
@@ -24,18 +30,26 @@ public class ClasspathReplace {
 		Scanner reader = new Scanner(System.in);
 		System.out.println("classpath file path:");
 		String filePath = reader.nextLine();
+		String [] filePaths=null;
 		reader.close();
-		if(filePath==null || filePath.trim().equals(""))
-			filePath=DEFAULT_CLASSPATH_FILE;
+		if(StringUtils.isNotEmpty(filePath)){
+			filePaths=new String[1];
+			filePaths[0]=filePath;
+		}else
+			filePaths=DEFAULT_CLASSPATH_FILE;
 		//String filePath="C:\\Users\\sfargose\\Workspaces\\cs\\test\\email.html";
-		String outputFilePath=filePath;
 		
-		String inputFileContent=readFile(filePath, Charset.forName("UTF-8"));
+		for(String path:filePaths){
+			String outputFilePath=path;
+			
+			String inputFileContent=readFile(path, Charset.forName("UTF-8"));
 
-		String outputFileContent=classPathReplace(inputFileContent);
-		writeFile(outputFilePath, outputFileContent);
-
-		//System.out.println("beyond minus 12 active duty retiring what to expect".replaceAll("\\s+", "-"));
+			String outputFileContent=classPathReplace(inputFileContent);
+			writeFile(outputFilePath, outputFileContent);
+			System.out.println("Done Replacing:"+path);
+		}
+		
+	
 		
 	}
 
@@ -52,7 +66,7 @@ public class ClasspathReplace {
 		Matcher urlMatcher = urlPattern.matcher(sBody);
 		while (urlMatcher.find( )) {
 			String replaceString=urlMatcher.group(1)+CLASSPATH_REPLACEMENT;
-			System.out.println(replaceString);
+			//System.out.println(replaceString);
 			urlMatcher.appendReplacement(buf, replaceString);
 		}
 		urlMatcher.appendTail(buf);

@@ -16,7 +16,7 @@ public class Lambda {
         return op.operation(a, b);
     }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {/*
 		Lambda lm=new Lambda();
 
 		List<Person> folks=lm.createFolks();
@@ -33,7 +33,7 @@ public class Lambda {
 		System.out.println(lm.operateBinary(40, 2, subtraction)); //passing method(interface) implementation to other method
 
 
-	}
+	*/}
 
 	private List<Person> createFolks(){
 		List<Person> folks=new ArrayList<Person>();
