@@ -133,8 +133,7 @@ public final class ClassLoaderLeakExample {
     // creating a new instance of this static final field on each iteration!
     static final byte[] moreBytesToLeak = new byte[1024 * 1024 * 10];
   
-    private static final ThreadLocal<LoadedInChildClassLoader> threadLocal
-        = new ThreadLocal<>();
+    private static final ThreadLocal<LoadedInChildClassLoader> threadLocal=null;//      = new ThreadLocal<>();
     
     public LoadedInChildClassLoader() {
       // Stash a reference to this class in the ThreadLocal

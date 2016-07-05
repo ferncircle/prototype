@@ -3,10 +3,12 @@ package com.test;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 
 public class Test {
 
+	
 	public static void main(String[] args) {
 		Map<String,String> queryMap=new HashMap<String,String>();
 		queryMap.put("keywords", "Electronics,Aircraft Electronics");
@@ -30,6 +32,10 @@ public class Test {
 	    	}    	
 	    }
 		
+		String str="asfewa'a \n awf\"awfe";
+		String out=str.replaceAll("(\\r|\\n|\\r\\n)+", "\\\\n");
+		
+		System.out.println(out);
 
 	}
 
