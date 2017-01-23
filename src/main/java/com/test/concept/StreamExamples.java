@@ -1,11 +1,13 @@
 /**
  * 
  */
-package com.test.concept.stream;
+package com.test.concept;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 /**
  * Stream represents sequence of objects from a source, supports functional style operations such map-reduce transformations. 
@@ -39,13 +41,28 @@ public class StreamExamples {
 	
 	public void testSorted(){
 		Random random=new Random();
-		random.ints().limit(20).sorted().forEach(System.out::println);
+		random.ints().limit(5).sorted().forEach(System.out::println);
+	}
+	
+	public void arrayToStream(){
+		String[] array = {"a", "b", "c", "d", "e"};
+		
+		Stream<String> stream=Arrays.stream(array);
+		stream.forEach(x->System.out.print(x+" "));
+		System.out.println();
+		
+		int[] intArray = {1, 2, 3, 4, 5};
+		
+		IntStream iStream=Arrays.stream(intArray);
+		iStream.forEach(x->System.out.print(x+" "));
 	}
 	
 	public static void main(String[] args) {
 		StreamExamples ex=new StreamExamples();
 		ex.testParallel();
 		ex.testSorted();
+		ex.arrayToStream();
+		
 	}
 
 }

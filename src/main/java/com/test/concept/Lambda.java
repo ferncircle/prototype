@@ -1,4 +1,4 @@
-package com.test;
+package com.test.concept;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,22 @@ import java.util.Random;
 
 import com.test.bean.Person;
 
+/**
+ * If an interface only has one method then Lambda provides clear and concise way of implementing it(as opposed to anonymous class) and that 
+ * functionality(code) can be passed around as data. Note that it only works with functional interface(has only one method).
+ * 
+ * Standard Lambda functional interfaces:
+ * 1) interface Predicate<T> : contains boolean method and evaluates a condition 
+ * 2) interface Consumer<T>: has void accept(T) method and do operation
+ * 3) interface Function<T,R>: has method R apply(T). It maps the value from T to R 
+ *
+ *Syntax:
+ *1) list of params with optional parentheses
+ *2) An arrow
+ *3) body which consists of expressions
+ *
+ * Lambda expressions can capture local variables of enclosing scope like anonumous classes.
+ */
 public class Lambda {	
 
 	interface Strategy {
