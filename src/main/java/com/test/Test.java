@@ -1,5 +1,6 @@
 package com.test;
 
+import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,8 +36,16 @@ public class Test {
 		String str="asfewa'a \n awf\"awfe";
 		String out=str.replaceAll("(\\r|\\n|\\r\\n)+", "\\\\n");
 		
-		System.out.println(out);
+		
 
+	}
+	public static int[] removeArrayPart(int[] inputArray, int l, int r) {
+	    int[] a=new int[inputArray.length-(r-l+1)];
+	    for(int i=0, j=0;i<inputArray.length;i++){
+	        if(i<l || i>r)
+	            a[j++]=inputArray[i];
+	    }
+	    return a;
 	}
 
 }

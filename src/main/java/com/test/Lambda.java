@@ -16,24 +16,23 @@ public class Lambda {
         return op.operation(a, b);
     }
 
-	public static void main(String[] args) {/*
+	public static void main(String[] args) {
 		Lambda lm=new Lambda();
 
 		List<Person> folks=lm.createFolks();
 
-		folks.stream().filter(p -> p.getName().startsWith("John")).map(p -> p.getName())
+		folks.stream().filter((p) -> p.getName().startsWith("John")).map(p -> p.getName())
 		.forEach(name -> System.out.println(name));
 
 		//other example
 		Strategy addition = (a, b) -> a + b; //annonymous method(interface method) definition
-		System.out.println("40 + 2 = " +
-	            lm.operateBinary(40, 2, addition)); //passing method(interface) implementation to other method
+		System.out.println(lm.operateBinary(40, 2, addition)); //passing method(interface) implementation to other method
 		
 		Strategy subtraction = (a, b) -> {System.out.print(a+" - "+b+" = ");return (a - b);}; //annonymous method(interface method) definition
 		System.out.println(lm.operateBinary(40, 2, subtraction)); //passing method(interface) implementation to other method
 
 
-	*/}
+	}
 
 	private List<Person> createFolks(){
 		List<Person> folks=new ArrayList<Person>();
