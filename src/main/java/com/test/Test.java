@@ -1,6 +1,9 @@
 package com.test;
 
 import java.math.BigInteger;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,33 +13,13 @@ import org.apache.commons.lang3.StringUtils;
 public class Test {
 
 	
-	public static void main(String[] args) {
-		Map<String,String> queryMap=new HashMap<String,String>();
-		queryMap.put("keywords", "Electronics,Aircraft Electronics");
+	public static void main(String[] args)throws Exception {
 		
-		final String QF_OR=" "+"OR"+" ";
-		if(queryMap!=null && queryMap.keySet()!=null){
-	    	
-	    	for(String queryKey:queryMap.keySet()){
-	    		StringBuffer qf=new StringBuffer();
-	    		for(String item:queryMap.get(queryKey).split("[,;]")){
-	    			
-	    			if((item.split("\\s")).length>1)
-	    				qf.append(queryKey+":"+"\""+item+"\""); //if multiword surround with double quotes
-	    			else
-	    				qf.append(queryKey+":"+item);
-	    			
-	    			qf.append(QF_OR);
-	    		}
-	    		qf.setLength(qf.length() - QF_OR.length());
-	    		
-	    	}    	
-	    }
+		/*String str=ClasspathReplace.readFile("C:\\code\\svn\\stable\\military\\registration-widget\\"
+				+ "widget\\web\\pages\\test\\doubleclick.html", Charset.forName("UTF-8"));
+		System.out.println(URLDecoder.decode(str, "UTF-8"));*/
 		
-		String str="asfewa'a \n awf\"awfe";
-		String out=str.replaceAll("(\\r|\\n|\\r\\n)+", "\\\\n");
-		
-		
+		System.out.println(URLDecoder.decode("%26","UTF-8"));
 
 	}
 	public static int[] removeArrayPart(int[] inputArray, int l, int r) {

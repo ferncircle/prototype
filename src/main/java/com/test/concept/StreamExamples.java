@@ -31,6 +31,18 @@ import java.util.stream.Stream;
  */
 public class StreamExamples {
 
+	public void testVariousExamples(){
+		//int[] a--> Integer[]
+		Integer[] what = Arrays.stream(new int[]{2,4,2,54,12,4} ).boxed().toArray( Integer[]::new );
+		System.out.println(Arrays.toString(what));
+		//convert string to Character array
+		Character[] ca="exampleString".chars().mapToObj(c->(char)c).toArray(Character[]::new);
+		System.out.println(Arrays.toString(ca));
+		
+		StringBuffer buf=new StringBuffer();
+		Arrays.stream(ca).forEach(c->buf.append(c));
+		System.out.println(buf.toString());
+	}
 	public void testParallel(){
 		//parallel
 		List<String> strings = Arrays.asList("abc", "", "bc", "efg", "abcd","", "jkl");
@@ -55,6 +67,8 @@ public class StreamExamples {
 		
 		IntStream iStream=Arrays.stream(intArray);
 		iStream.forEach(x->System.out.print(x+" "));
+		System.out.println();
+		
 	}
 	
 	public static void main(String[] args) {
@@ -62,6 +76,7 @@ public class StreamExamples {
 		ex.testParallel();
 		ex.testSorted();
 		ex.arrayToStream();
+		ex.testVariousExamples();
 		
 	}
 
