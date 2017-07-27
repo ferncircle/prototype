@@ -10,23 +10,28 @@ import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 /**
- * Stream represents sequence of objects from a source, supports functional style operations such map-reduce transformations. 
- * Operations are divided into 2 categories and together they form pipeline:
- * 1) Intermediate: returns new stream and are lazy
+ * Stream represents sequence of objects from a source and it doesn't actually store data. It forms pipeline of operations and it's not computed until some terminal
+ * 	operation is invoked. It supports parallelism (stream.parallelstream()) to take advantage of multiple core cpu parallel operation. 
+ * Operations in stream are divided into 2 categories and together they form pipeline:
+ * 1) Intermediate: returns new stream and are lazy(not computed)
  * 		a) Stateful: may need to process entire input (distinct, sorted)
  * 		b) Stateless: (filter, map)
- * 2) Terminal: mostly produces result and pipeline is considered as consumed and can't be reused. e.g. foreach, sum, max *  
- * 
-   Features:
-   1) No storage: It's not a data structure but depends on base data source such as collection, array, I/O channel
-   2) Functional in nature, produces intermediate result but doesn't modify source
-   3) Supports parallelism 
- *
+ * 2) Terminal: mostly produces result and pipeline is considered as consumed and can't be reused. e.g. foreach, sum, max, collect 
+ *  *
  * e.g.
  * int sum = widgets.stream()
-                      .filter(b -> b.getColor() == RED)
-                      .mapToInt(b -> b.getWeight())
+                      .filter(b -> b.getColor() == RED)  //returns stream, forming pipeline
+                      .mapToInt(b -> b.getWeight()) //returns stream, forming pipeline
                       .sum();
+                      
+                      
+   List<Integer> transactionsIds = 
+    transactions.stream()
+                .filter(t -> t.getType() == Transaction.GROCERY)
+                .sorted(comparing(Transaction::getValue).reversed())
+                .map(Transaction::getId)
+                .collect(toList());
+                      
                       
  */
 public class StreamExamples {
