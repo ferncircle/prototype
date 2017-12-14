@@ -12,10 +12,11 @@ public class Finally {
 		
 		try {
 			a=34;
-			//Integer.parseInt("213s");
+			Integer.parseInt("213s");
+			//return a;
+		} catch (NumberFormatException e) {
+			System.out.println("in exception"+e.getMessage());
 			return a;
-		} catch (NullPointerException e) {
-			
 		}finally{
 			System.out.println("in finally block");
 		}

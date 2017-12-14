@@ -23,10 +23,6 @@ import com.test.bean.Person;
  * Lambda expressions can capture local variables of enclosing scope like anonumous classes.
  */
 public class Lambda {	
-
-	interface Strategy {
-		int operation(int a, int b);   
-	}
 	
 	public int operateBinary(int a, int b, Strategy op) {
         return op.operation(a, b);
@@ -43,6 +39,8 @@ public class Lambda {
 		//other example
 		Strategy addition = (a, b) -> a + b; //annonymous method(interface method) definition
 		System.out.println(lm.operateBinary(40, 2, addition)); //passing method(interface) implementation to other method
+		
+		System.out.println(lm.operateBinary(40, 2, (a, b) -> a + b));
 		
 		Strategy subtraction = (a, b) -> {System.out.print(a+" - "+b+" = ");return (a - b);}; //annonymous method(interface method) definition
 		System.out.println(lm.operateBinary(40, 2, subtraction)); //passing method(interface) implementation to other method
